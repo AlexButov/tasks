@@ -1,5 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser') // парсит реквест попадающий в боди
+
 const listRouter = require('./routes/index')
 const app = express()
 
