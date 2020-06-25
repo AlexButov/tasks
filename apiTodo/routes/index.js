@@ -1,15 +1,46 @@
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/item')
+
+
+
+router.get('/', controller.getAll)
+router.post('/', controller.create)
+router.get('/:id', controller.getById)
+router.put('/:id', controller.update)
+router.delete('/:id', controller.remove)
+
+router.get(/./, controller.error) // если нет запроса
+
+module.exports = router
 
 
 
 
 
 
-// Рабочий код
 
-// const express = require('express');
-// const db = require('../db');
-// let router = express.Router();
-// const ObjectID = require('mongodb').ObjectID;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // router
 //     .route('')
@@ -76,5 +107,3 @@
 //             }
 //         )
 //     })
-
-// module.exports = router;
