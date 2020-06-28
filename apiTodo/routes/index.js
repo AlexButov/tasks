@@ -10,7 +10,6 @@ router.get('/:id', controller.getById)
 router.put('/:id', controller.update)
 router.delete('/:id', controller.remove)
 
-// router.get(/./, controller.error) // если нет запроса
 
 module.exports = router
 
