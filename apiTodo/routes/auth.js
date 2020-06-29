@@ -9,9 +9,9 @@ router.post('/login', controller.login)
 router.post('/register', controller.register)
 
 // localhost:3000/auth/getUsers
-router.get('/getUsers', controller.getAllUsers)
+router.get('/users', controller.getAllUsers)
 
 // localhost:3000/auth/clearUsers
-router.delete('/clearUsers', controller.clearAllUser)
+router.delete('/users/clear', controller.clearAllUser)
 
 module.exports = router

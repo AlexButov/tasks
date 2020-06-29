@@ -5,12 +5,12 @@ const passport = require('passport')
 
 
 // session:false - значит, что passport.authenticate необходим для каждого запроса
-router.get('/getCars', passport.authenticate('jwt', {session:false}), controller.getAll)
-router.post('/create', passport.authenticate('jwt', {session:false}), controller.create)
-router.get('/getCar/:id', passport.authenticate('jwt', {session:false}), controller.getById)
-router.put('/update/:id', passport.authenticate('jwt', {session:false}), controller.update)
-router.delete('/remove/:id', passport.authenticate('jwt', {session:false}), controller.remove)
-router.delete('/clearCars', passport.authenticate('jwt', {session:false}), controller.clearDb)
+router.get('/', passport.authenticate('jwt', {session:false}), controller.getAll)
+router.post('/', passport.authenticate('jwt', {session:false}), controller.create)
+router.get('/:id', passport.authenticate('jwt', {session:false}), controller.getById)
+router.put('/:id', passport.authenticate('jwt', {session:false}), controller.update)
+router.delete('/:id', passport.authenticate('jwt', {session:false}), controller.remove)
+router.delete('/clear', passport.authenticate('jwt', {session:false}), controller.clearDb)
 module.exports = router
 
 // router
