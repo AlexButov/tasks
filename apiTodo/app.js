@@ -16,4 +16,6 @@ require('./middleware/passport')(passport)  // Возвращает функци
 app.use('/auth', authRouter)
 app.use('/cars', carRouter)
 
+// app.use('/login', express.static(`${__dirname}/public`))
+
 module.exports = app;
