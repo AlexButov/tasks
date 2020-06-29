@@ -8,4 +8,10 @@ router.post('/login', controller.login)
 // localhost:3000/auth/register
 router.post('/register', controller.register)
 
+// localhost:3000/auth/getUsers
+router.get('/getUsers', controller.getAllUsers)
+
+// localhost:3000/auth/clearUsers
+router.delete('/clearUsers', controller.clearAllUser)
+
 module.exports = router

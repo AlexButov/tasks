@@ -1,45 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/Item')
+const controller = require('../controllers/Car')
+const passport = require('passport')
 
 
-
-router.get('/', controller.getAll)
-router.post('/', controller.create)
-router.get('/:id', controller.getById)
-router.put('/:id', controller.update)
-router.delete('/:id', controller.remove)
-
-
+// session:false - значит, что passport.authenticate необходим для каждого запроса
+router.get('/getCars', passport.authenticate('jwt', {session:false}), controller.getAll)
+router.post('/create', passport.authenticate('jwt', {session:false}), controller.create)
+router.get('/getCar/:id', passport.authenticate('jwt', {session:false}), controller.getById)
+router.put('/update/:id', passport.authenticate('jwt', {session:false}), controller.update)
+router.delete('/remove/:id', passport.authenticate('jwt', {session:false}), controller.remove)
+router.delete('/clearCars', passport.authenticate('jwt', {session:false}), controller.clearDb)
 module.exports = router
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // router
 //     .route('')

@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const app = require('./app')
+const mongoose = require('mongoose')
 
 const connectDb = async () => {
   try {
@@ -15,33 +14,9 @@ const connectDb = async () => {
 
 const db = connectDb;
 
-
 module.exports = db;
 
-
-
-
-
-
-
-
-
-
-
-
-
-// const mongoose = require('mongoose');
-// mongoose.connect('mongodb://localhost:27017/myApi', {
-//   useNewUrlParser: true,
-//   useUnifiedTopology: true
-// }); 
-
-// const db = mongoose.connection;
-
-// module.exports = db;
-
-
-
+// Подключение к mongoDB без mongoose
 // const MongoClient = require('mongodb').MongoClient;
 
 // let state = {
