@@ -1,4 +1,3 @@
-// const db = require('../db');
 const CarModel = require('../models/Car')
 
 module.exports.getAll = ((req, res) => {
