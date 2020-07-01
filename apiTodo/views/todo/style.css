@@ -32,6 +32,29 @@ li::after{
     height: 100%;
     background-color: #fff;
 }
+li img{
+    position: absolute;
+    content: '';
+    display: block;
+    width: 18px;
+    height: 20px;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+/* li::before{
+    position: absolute;
+    content: '';
+    display: block;
+    width: 18px;
+    height: 20px;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: url(./basket.svg);
+    cursor: pointer;
+} */
 input[type=checkbox]{
     display: block;
     width: 50px;
