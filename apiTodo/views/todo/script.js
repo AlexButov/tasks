@@ -1,52 +1,129 @@
-class Todos {
+class TodoStore {
     constructor() {
-        this.todos = [];
-        this.parrent = document.querySelector('ul');
+        this.todos = []
+        this.parrent = document.querySelector('ul')
         this.inputValue = document.querySelector('.additem__input');
+        this.element = document.createElement('li');
     }
 
-    checkInputValue(){
-        if(this.inputValue.value === '') {
-            this.inputValue.value = 'Вы ничего не написали'
-        } else {
-            this.inputValue.value = this.inputValue.value
+    async createTodo (){
+        try{
+            axios.post('/', {
+                
+            }).then((res) => {
+                
+            })
+            
+            const element = document.createElement('li');
+            element.innerHTML = `
+            <input type="checkbox">${this.inputValue.value}
+            <img src="./basket.svg" alt="basket" onclick="todo.deleteTodo(0)">
+            `;
+            // const res = await axios.post('/', data, config)
+            this.todos.push(element);
+            this.setState([...this.todos]);
+            
+        } catch(err) {
+            console.log(err)
         }
     }
 
-    create() {
-        this.newTodos()
+    async deleteTodo(id) {
+        const itemIndex = this.todos.findIndex(item => item.id === id)   // по id находим туду и сплайсим при этом меняем сетстейт
+        // if (itemIndex === -1) {
+        //     return
+        // }
+        try {
+            // await axios.delete('/', { data: { foo: "bar" } })             //It accepts two parameters: url and optional config. You can use config.data to set the response body as follows:
+            this.todos.splice(itemIndex, 1)
+            this.setState([...this.todos])
+        } catch(err) {
+            console.log(err)
+        }   
     }
 
-    delete() {
-        console.log('lol2')
-    }
-
-    newTodos(newArray){
-        console.log('lol3')
-        // this.todos = newArray
-        console.log(this.todos)
-        
+    setState(newItems) {
+        this.toods = newItems;       // заменяем старый массив новым, для того чтобы вызвать каждый раз функцию дро
         this.draw()
     }
 
-    draw () {
-        this.checkInputValue();
-        const element = document.createElement('li');
-
-        element.innerHTML = `
-        <input type="checkbox">${this.inputValue.value}
-        <img src="./basket.svg" alt="basket" onclick="todo.delete()">
-        `;
-
-        this.parrent.append(element);
-        
-        this.inputValue.value = ''
-
-        this.todos.push(element)
+    draw() {
+        // рендерит тудушки в html
+        this.todos.forEach(todo => {
+            this.parrent.append(todo)
+        })
         console.log(this.todos)
     }
 }
-const todo = new Todos();
+
+const todo = new TodoStore();
+// class Todos {
+//     constructor() {
+//         this.todos = [];
+//         this.parrent = document.querySelector('ul');
+//         this.inputValue = document.querySelector('.additem__input');
+//         this.colors = ['#e76c6c', '#e775de', '#a084ec', '#659ff7', '#69ce9f', '#fdcf00'];
+//     }
+
+//     checkInputValue(){
+//         if(this.inputValue.value === '') {
+//             this.inputValue.value = 'Вы ничего не написали'
+//         } else {
+//             this.inputValue.value = this.inputValue.value
+//         }
+//     }
+
+//     choiseRandomColor() {
+//         let randomColor = this.colors[Math.floor(Math.random()*this.colors.length)];
+//         return randomColor;
+//     }
+
+//     async create() {
+//         this.newTodos([...this.todos])
+//         try{
+//             // await axios.get('/', data, config)
+//             this.checkInputValue();
+//             this.choiseRandomColor();
+
+//             const element = document.createElement('li');
+
+//             element.innerHTML = `
+//             <input type="checkbox">${this.inputValue.value}
+//             <img src="./basket.svg" alt="basket" onclick="todo.delete()">
+//             `;
+
+//             const selected = document.querySelector('.activeColor');
+
+//             if (selected) {
+//                 element.classList.add(selected.classList[1]);
+//             } else {
+//                 element.style.background = this.randomColor;
+//             }
+
+//             this.parrent.append(element);
+            
+//             this.inputValue.value = ''
+//             this.todos.push(element)
+//         }catch(err){
+//             console.log(err) 
+//         }
+//     }
+
+//     delete() {
+//         console.log('lol2')
+//     }
+
+//     newTodos(newArray){
+//         this.todos = newArray
+//         this.draw()
+//     }
+
+//     draw () {
+        
+//         console.log(this.todos)
+//     }
+// }
+// const todo = new Todos();
 
 // const colors = ['#e76c6c', '#e775de', '#a084ec', '#659ff7', '#69ce9f', '#fdcf00'];
 
