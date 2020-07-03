@@ -6,23 +6,40 @@ class TodoStore {
         this.element = document.createElement('li');
     }
 
+    async getTodos (){
+        try {
+          const res = await axios.get('http://localhost:3000/api/todos');
+      
+          const todos = res.data;
+      
+          console.log(todos);
+      
+          return todos;
+        } catch (e) {
+          console.error(e);
+        }
+      };
+
     async createTodo (){
         try{
-            axios.post('/', {
+            // const element = document.createElement('li');
+
+            // await axios.post('/', {
                 
-            }).then((res) => {
-                
-            })
-            
+            // })
+            // .then((res) => {
+            //     this.todos.push(res.data);
+            //     console.log(this.todos)
+            //     this.setState([...this.todos]);
+            // })
             const element = document.createElement('li');
             element.innerHTML = `
             <input type="checkbox">${this.inputValue.value}
-            <img src="./basket.svg" alt="basket" onclick="todo.deleteTodo(0)">
+            <img src="./basket.svg" alt="basket" onclick="todo.deleteTodo(id)">
             `;
             // const res = await axios.post('/', data, config)
             this.todos.push(element);
             this.setState([...this.todos]);
-            
         } catch(err) {
             console.log(err)
         }
@@ -30,9 +47,9 @@ class TodoStore {
 
     async deleteTodo(id) {
         const itemIndex = this.todos.findIndex(item => item.id === id)   // по id находим туду и сплайсим при этом меняем сетстейт
-        // if (itemIndex === -1) {
-        //     return
-        // }
+        if (itemIndex === -1) {
+            return
+        }
         try {
             // await axios.delete('/', { data: { foo: "bar" } })             //It accepts two parameters: url and optional config. You can use config.data to set the response body as follows:
             this.todos.splice(itemIndex, 1)

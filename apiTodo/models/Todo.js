@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const itemSchema = new Schema(
+const todoSchema = new Schema(
     {
         name: {
             type: String,
@@ -15,6 +15,6 @@ const itemSchema = new Schema(
     {versionKey: false}
 )
 
-const car = mongoose.model('car',itemSchema)
+const todo = mongoose.model('todo',todoSchema)
 
-module.exports = car
+module.exports = todo

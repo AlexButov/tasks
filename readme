@@ -26,3 +26,45 @@ https://medium.com/@diogo.fg.pinheiro/simple-to-do-list-app-with-node-js-and-mon
 https://github.com/axios/axios
 https://www.digitalocean.com/community/tutorials/js-axios-vanilla-js
 https://www.youtube.com/watch?v=m7uRgwVy3N0&list=PLcvhF2Wqh7DNDDIp2MGbv8cMYsoUO1lew&index=6
+
+
+
+fetch('http://localhost:3000/api/todos')
+Promise {<pending>}
+let rez = fetch('http://localhost:3000/api/todos')
+undefined
+rez.then(data => data.json())
+Promise {<pending>}
+rez.then(data => data.json()).then(rez => console.log(rez))
+Promise {<rejected>: TypeError: Failed to execute 'json' on 'Response': body stream is locked
+    at <anonymous>:1:23}
+VM424:1 Uncaught (in promise) TypeError: Failed to execute 'json' on 'Response': body stream is locked
+    at <anonymous>:1:23
+(anonymous) @ VM424:1
+Promise.then (async)
+(anonymous) @ VM424:1
+let t = rez.then(data => data.json())
+undefined
+VM464:1 Uncaught (in promise) TypeError: Failed to execute 'json' on 'Response': body stream is locked
+    at <anonymous>:1:31
+(anonymous) @ VM464:1
+data
+VM492:1 Uncaught ReferenceError: data is not defined
+    at <anonymous>:1:1
+(anonymous) @ VM492:1
+let rez = fetch('http://localhost:3000/api/todos').then(r => r.json())
+undefined
+rez
+Promise {<resolved>: {…}}
+rez.then(t => console.log(t))
+VM658:1 {todos: Array(5)}todos: Array(5)0: {_id: "5eff155e8e119d5d9caccc92", name: "newTodo", description: "newTodo"}1: {_id: "5eff18229952bc60637e7ea8", name: "yetTodo", description: "yetTodo"}2: {_id: "5eff18569952bc60637e7ea9", name: "redTodo", description: "color red"}3: {_id: "5eff18769952bc60637e7eaa", name: "yellow Todo", description: "color yellow"}4: {_id: "5eff1a7917676f61ea07a496", name: "pink Todo", description: "color pink"}length: 5__proto__: Array(0)__proto__: Object
+Promise {<resolved>: undefined}
+let rezult
+undefined
+rez.then(t => console.log(rezult = t))
+VM749:1 {todos: Array(5)}
+Promise {<resolved>: undefined}
+rezult
+{todos: Array(5)}todos: Array(5)0: {_id: "5eff155e8e119d5d9caccc92", name: "newTodo", description: "newTodo"}1: {_id: "5eff18229952bc60637e7ea8", name: "yetTodo", description: "yetTodo"}2: {_id: "5eff18569952bc60637e7ea9", name: "redTodo", description: "color red"}3: {_id: "5eff18769952bc60637e7eaa", name: "yellow Todo", description: "color yellow"}4: {_id: "5eff1a7917676f61ea07a496", name: "pink Todo", description: "color pink"}length: 5__proto__: Array(0)__proto__: Object
+rezult
+{todos: Array(5)}todos: (5) [{…}, {…}, {…}, {…}, {…}]__proto__: Object
