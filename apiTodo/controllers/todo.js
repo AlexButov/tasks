@@ -68,7 +68,7 @@ module.exports.remove = ((req, res) => {
 })
 
 module.exports.clearDb = ((req, res) => {
-    Todo.remove({}, (err, doc) => {
+    Todo.remove({}, (err) => {
             if(err) {
                 console.log(err)
                 return res.sendStatus(500);

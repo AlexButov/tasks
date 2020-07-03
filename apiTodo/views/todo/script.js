@@ -1,71 +1,27 @@
-class TodoStore {
+class TodoStore{
     constructor() {
         this.todos = []
         this.parrent = document.querySelector('ul')
-        this.inputValue = document.querySelector('.additem__input');
-        this.element = document.createElement('li');
     }
-
-    async getTodos (){
-        try {
-          const res = await axios.get('http://localhost:3000/api/todos');
-      
-          const todos = res.data;
-      
-          console.log(todos);
-      
-          return todos;
-        } catch (e) {
-          console.error(e);
-        }
-      };
-
-    async createTodo (){
+    
+    async getTodos(){
         try{
-            // const element = document.createElement('li');
-
-            // await axios.post('/', {
-                
-            // })
-            // .then((res) => {
-            //     this.todos.push(res.data);
-            //     console.log(this.todos)
-            //     this.setState([...this.todos]);
-            // })
-            const element = document.createElement('li');
-            element.innerHTML = `
-            <input type="checkbox">${this.inputValue.value}
-            <img src="./basket.svg" alt="basket" onclick="todo.deleteTodo(id)">
-            `;
-            // const res = await axios.post('/', data, config)
-            this.todos.push(element);
-            this.setState([...this.todos]);
-        } catch(err) {
+            const res = await axios.get('http://localhost:3000/api/todos')
+            const todos = res.data
+    
+            console.log(todos)
+        } catch(err){
             console.log(err)
         }
     }
 
-    async deleteTodo(id) {
-        const itemIndex = this.todos.findIndex(item => item.id === id)   // по id находим туду и сплайсим при этом меняем сетстейт
-        if (itemIndex === -1) {
-            return
-        }
-        try {
-            // await axios.delete('/', { data: { foo: "bar" } })             //It accepts two parameters: url and optional config. You can use config.data to set the response body as follows:
-            this.todos.splice(itemIndex, 1)
-            this.setState([...this.todos])
-        } catch(err) {
-            console.log(err)
-        }   
-    }
-
-    setState(newItems) {
-        this.toods = newItems;       // заменяем старый массив новым, для того чтобы вызвать каждый раз функцию дро
+    setState(newTodos){
+        this.todos = newTodos
         this.draw()
     }
 
-    draw() {
-        // рендерит тудушки в html
+    drow(){
+        this.parrent.innerHTML = ''
         this.todos.forEach(todo => {
             this.parrent.append(todo)
         })
@@ -74,97 +30,116 @@ class TodoStore {
 }
 
 const todo = new TodoStore();
-// class Todos {
+
+
+// class TodoStore {
 //     constructor() {
-//         this.todos = [];
-//         this.parrent = document.querySelector('ul');
+//         this.todos = []
+//         this.parrent = document.querySelector('ul')
 //         this.inputValue = document.querySelector('.additem__input');
-//         this.colors = ['#e76c6c', '#e775de', '#a084ec', '#659ff7', '#69ce9f', '#fdcf00'];
+//         this.element = document.createElement('li');
 //     }
 
-//     checkInputValue(){
-//         if(this.inputValue.value === '') {
-//             this.inputValue.value = 'Вы ничего не написали'
-//         } else {
-//             this.inputValue.value = this.inputValue.value
+//     async getTodos (){
+//         try {
+//           const res = await axios.get('http://localhost:3000/api/todos');
+      
+//           const todos = res.data;
+      
+//           console.log(todos);
+      
+//           return todos;
+//         } catch (e) {
+//           console.error(e);
 //         }
-//     }
+//       };
 
-//     choiseRandomColor() {
-//         let randomColor = this.colors[Math.floor(Math.random()*this.colors.length)];
-//         return randomColor;
-//     }
-
-//     async create() {
-//         this.newTodos([...this.todos])
+//     async createTodo (){
 //         try{
-//             // await axios.get('/', data, config)
-//             this.checkInputValue();
-//             this.choiseRandomColor();
+//             // const element = document.createElement('li');
 
+//             // await axios.post('/', {
+                
+//             // })
+//             // .then((res) => {
+//             //     this.todos.push(res.data);
+//             //     console.log(this.todos)
+//             //     this.setState([...this.todos]);
+//             // })
 //             const element = document.createElement('li');
-
 //             element.innerHTML = `
 //             <input type="checkbox">${this.inputValue.value}
-//             <img src="./basket.svg" alt="basket" onclick="todo.delete()">
+//             <img src="./basket.svg" alt="basket" onclick="todo.deleteTodo(id)">
 //             `;
-
-//             const selected = document.querySelector('.activeColor');
-
-//             if (selected) {
-//                 element.classList.add(selected.classList[1]);
-//             } else {
-//                 element.style.background = this.randomColor;
-//             }
-
-//             this.parrent.append(element);
-            
-//             this.inputValue.value = ''
-//             this.todos.push(element)
-//         }catch(err){
-//             console.log(err) 
+//             // const res = await axios.post('/', data, config)
+//             this.todos.push(element);
+//             this.setState([...this.todos]);
+//         } catch(err) {
+//             console.log(err)
 //         }
 //     }
 
-//     delete() {
-//         console.log('lol2')
+//     async deleteTodo(id) {
+//         const itemIndex = this.todos.findIndex(item => item.id === id)   // по id находим туду и сплайсим при этом меняем сетстейт
+//         if (itemIndex === -1) {
+//             return
+//         }
+//         try {
+//             // await axios.delete('/', { data: { foo: "bar" } })             //It accepts two parameters: url and optional config. You can use config.data to set the response body as follows:
+//             this.todos.splice(itemIndex, 1)
+//             this.setState([...this.todos])
+//         } catch(err) {
+//             console.log(err)
+//         }   
 //     }
 
-//     newTodos(newArray){
-//         this.todos = newArray
+//     setState(newItems) {
+//         this.toods = newItems;       // заменяем старый массив новым, для того чтобы вызвать каждый раз функцию дро
 //         this.draw()
 //     }
 
-//     draw () {
-        
+//     draw() {
+//         // рендерит тудушки в html
+//         this.todos.forEach(todo => {
+//             this.parrent.append(todo)
+//         })
 //         console.log(this.todos)
 //     }
 // }
-// const todo = new Todos();
+
+
+
+
+
+
+
+
+
+
 
 // const colors = ['#e76c6c', '#e775de', '#a084ec', '#659ff7', '#69ce9f', '#fdcf00'];
 
 // Проверка на чекбокс
-let list = document.querySelector('ul');
+// let list = document.querySelector('ul');
 
-    list.addEventListener('click', (event) => {
-        if (event.target.tagName === 'INPUT')  {
-            event.target.parentNode.classList.toggle('checked');
-        }
-    })
-// Рамка выбора цвета для блока
+//     list.addEventListener('click', (event) => {
+//         if (event.target.tagName === 'INPUT')  {
+//             event.target.parentNode.classList.toggle('checked');
+//         }
+//     })
+// // Рамка выбора цвета для блока
 
-const colorChoise = document.querySelectorAll('.additem__color'),
-      colorWrapper = document.querySelector('.additem__wrapper');
+// const colorChoise = document.querySelectorAll('.additem__color'),
+//       colorWrapper = document.querySelector('.additem__wrapper');
 
-colorWrapper.addEventListener('click', (event) => {
-    if(event.target.classList.contains('additem__color')) {
-        colorChoise.forEach(item => {
-            item.classList.remove('activeColor');
-        })
-        event.target.classList.add('activeColor');
-    }
-})
+// colorWrapper.addEventListener('click', (event) => {
+//     if(event.target.classList.contains('additem__color')) {
+//         colorChoise.forEach(item => {
+//             item.classList.remove('activeColor');
+//         })
+//         event.target.classList.add('activeColor');
+//     }
+// })
 
 // // Добавление нового item
 

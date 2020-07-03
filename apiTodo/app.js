@@ -21,13 +21,12 @@ require('./middleware/passport')(passport)  // Возвращает функци
 
 app.use(express.static(__dirname + '/views/todo'))
 
-app.use('/api', authRouter)
+app.use('/api/auth', authRouter)
 app.use('/api/todos', todoRouter)
 
 
 app.get('/', passport.authenticate('jwt', {session:false}), (req, res) => {
     res.sendFile('todo.html', {root: path.join(__dirname, '../apiTodo/views/todo')})
 })
-
 
 module.exports = app;
