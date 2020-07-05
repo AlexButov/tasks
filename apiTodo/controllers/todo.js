@@ -15,15 +15,14 @@ module.exports.getAll = ((req, res) => {
 
 module.exports.create = (req, res) => {
     Todo.create(
-        {name: req.body.name, description: req.body.description},
+        {name: req.body.name},
         (err, doc) => {
         if(err) {
              console.log(err)
              return res.sendStatus(500);
         }
         res.status(201).json({
-            name: req.body.name,
-            description: req.body.description
+            name: req.body.name
         })
     })
 }
@@ -43,7 +42,7 @@ module.exports.getById = ((req, res) => {
 
 module.exports.update = ((req, res) => {
     Todo.updateOne({_id: req.params.id},
-        {name: req.body.name, description: req.body.description},
+        {name: req.body.name},
         (err, doc) => {
             if(err) {
                 console.log(err)
@@ -56,13 +55,14 @@ module.exports.update = ((req, res) => {
 })
 
 module.exports.remove = ((req, res) => {
-    Todo.deleteOne({_id: req.params.id}, (err, doc) => {
+    const id = req.params.id;
+    Todo.findByIdAndRemove(id, err =>  {
             if(err) {
                 console.log(err)
                 return res.sendStatus(500);
             }
             res.status(204).json({
-                message: 'Deleted'
+                message: 'deleted'
             });
     })
 })

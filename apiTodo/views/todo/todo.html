@@ -8,17 +8,9 @@
 <body>
     <div class="container">
         <ul>
-            <!-- <li class="red">
-                <input type="checkbox">Todo 1
-            </li>
-            <li class="pink">
-                <input type="checkbox">Todo 2
-            </li>
-            <li class="violet">
-                <input type="checkbox">Todo 3
-            </li> -->
+            
         </ul>
-        <form class="additem">
+        <div class="additem">
             <input name="name" type="text" class="additem__input" placeholder="Add New Item">
             <div class="additem__wrapper">
                 <div class="additem__color red"></div>
@@ -27,9 +19,9 @@
                 <div class="additem__color blue"></div>
                 <div class="additem__color green"></div>
                 <div class="additem__color yellow"></div>
-                <button onclick="todo.getTodos()">Add</button>
+                <button onclick="todo.createTodo()">Add</button>
             </div>
-        </form>
+        </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>

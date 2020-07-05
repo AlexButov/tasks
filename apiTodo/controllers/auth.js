@@ -2,7 +2,6 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const keys = require('../config/keys')
 
-
 const User = require('../models/User')
 
 module.exports.register = async function (req,res) {
@@ -54,7 +53,6 @@ module.exports.login = async function (req,res) {
             res.cookie('token', token, {httpOnly: false})
             
             res.redirect('/')
-            
         } else {
             res.status(401).json({
                 message: 'Неверный пароль'
