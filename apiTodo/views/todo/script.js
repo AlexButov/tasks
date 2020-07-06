@@ -35,46 +35,39 @@ class TodoStore{
     }
     
     async deleteTodo(id) {
-        await axios.get('http://localhost:3000/api/todos')
-        .then(res => {
-            const todos = res.data
-            todos.todos.forEach(todo => {
-                console.log(todo)
-                let id = todo._id
-                console.log(id)
-                return id
+        try{
+            await axios.delete(`http://localhost:3000/api/todos/${id}`)
+            .then((res) => {
+                this.getTodos()
             })
-        })
-        await axios.delete(`http://localhost:3000/api/todos/${id}`)
-        .then((res) => {
-            this.getTodos()
-        })
-        //     async deleteTodo(id) {
-//         const itemIndex = this.todos.findIndex(item => item.id === id)   // по id находим туду и сплайсим при этом меняем сетстейт
-//         if (itemIndex === -1) {
-//             return
-//         }
-//         try {
-//             // await axios.delete('/', { data: { foo: "bar" } })             //It accepts two parameters: url and optional config. You can use config.data to set the response body as follows:
-//             this.todos.splice(itemIndex, 1)
-//             this.setState([...this.todos])
-//         } catch(err) {
-//             console.log(err)
-//         }   
-//     }
-         
+        }catch(err){
+            console.log(err)
+        }
+    }
+
+    async doneTodos(id){
+        try{
+            await axios.put(`http://localhost:3000/api/todos/${id}`)
+            .then(res => {
+                console.log(res.data)
+                this.getTodos()
+            })
+        }catch(err){
+            console.log(err)
+        }
     }
 
     render(todos){
         this.parrent.innerHTML = ''
         todos.todos.forEach(todo => {
-           
+            if(todo.done){
+                li.classList.add('checked')
+            }
             const li = document.createElement('li')
             li.innerHTML = `
-            <input type="checkbox">${todo.name}
-            <img src="./basket.svg" alt="basket" onclick="todo.deleteTodo(id)">
+            <input type="checkbox" name="done" onclick="todo.doneTodo('${todo._id}')">${todo.name}
+            <img src="./basket.svg" alt="basket" onclick="todo.deleteTodo('${todo._id}')">
             `;
-
             let randomColor = this.colors[Math.floor(Math.random()*this.colors.length)];
             const selected = document.querySelector('.activeColor');
 
@@ -93,10 +86,7 @@ class TodoStore{
 
 const todo = new TodoStore()
 
-
 window.addEventListener('onload', todo.getTodos())
-
-
 
 // Проверка на чекбокс
 let list = document.querySelector('ul');
@@ -119,3 +109,19 @@ colorWrapper.addEventListener('click', (event) => {
         event.target.classList.add('activeColor');
     }
 })
+
+
+
+//     async deleteTodo(id) {
+//         const itemIndex = this.todos.findIndex(item => item.id === id)   // по id находим туду и сплайсим при этом меняем сетстейт
+//         if (itemIndex === -1) {
+//             return
+//         }
+//         try {
+//             // await axios.delete('/', { data: { foo: "bar" } })             //It accepts two parameters: url and optional config. You can use config.data to set the response body as follows:
+//             this.todos.splice(itemIndex, 1)
+//             this.setState([...this.todos])
+//         } catch(err) {
+//             console.log(err)
+//         }   
+//     }

@@ -42,7 +42,7 @@ module.exports.getById = ((req, res) => {
 
 module.exports.update = ((req, res) => {
     Todo.updateOne({_id: req.params.id},
-        {name: req.body.name},
+        {done: req.body.done},
         (err, doc) => {
             if(err) {
                 console.log(err)
